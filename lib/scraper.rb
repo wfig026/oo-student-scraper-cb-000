@@ -4,7 +4,7 @@ require 'pry'
 class Scraper
   # responsible for scraping the index page that lists all of the students
   def self.scrape_index_page(index_url)
-    index_page = Nokogiri::HMTL(open(index_url))
+    index_page = Nokogiri::HTML(open(index_url))
     students = []
     index_page.css("div.roster-cards-container").each do |card|
       card.css(".student-card a").each do |student|
