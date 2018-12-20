@@ -5,17 +5,8 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    stored_hash = student_hash
-    stored_hash.each do |key, value|
-        if key == :name
-          self.name = value
-        elsif key == :location
-          self.location = value
-        elsif key == :profile_url
-          self.profile_url = value
-        end
-      end
-        @@all << self
+    student_hash.each {|key, value| self.send(("#{key}="), value)}
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
